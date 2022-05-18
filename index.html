@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Vue 3</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <div id="app">
+        <div :style="styles">
+            <label for="themeBlack">
+                <input type="checkbox" :checked="themeBlack" @click="toogleTheme" name="themeBlack" id="themeBlack"> Tema Escuro
+            </label>
+            <h1>{{ title }}</h1>
+            <p>{{ fullName }}</p>
+            
+            <hr>
+                <h3>Carrinho ({{cart.length}})</h3>
+    
+            <ul>
+                <li v-for="(product, index) in products" :key="index">
+                    
+                    <product-detail 
+                        :product="product"
+                        :product-in-cart="inCart(product)"
+                        :title="product.title"
+                        :image="product.image"
+                        :stars="product.stars"
+                        @add-prod-cart="addCart">
+                    </product-detail>
+                </li>
+            </ul>
+            <hr>
+            <exemple-form>
+                
+            </exemple-form>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./app.js"></script>
+    <script src="./components/ProductDetail.js"></script>
+    <script src="./components/ExampleForms.js"></script>
+    <script>
+        app.mount('#app')
+    </script>
+</body>
+</html>
